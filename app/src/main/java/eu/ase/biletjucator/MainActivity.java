@@ -78,6 +78,22 @@ public class MainActivity extends AppCompatActivity {
                 notifyAdapter();
             }
         }
+        //daca se duce cu intent ul cu UPDATE, se va intoarce si trebuie updatat player ul de la pozitia data
+        if(requestCode == REQUEST_CODE_UPDATE_PLAYER && resultCode == RESULT_OK && data!=null){
+            Jucator jucator = (Jucator) data.getParcelableExtra(AddPlayerActivity.ADD_PLAYER_KEY);
+            if (jucator != null) {
+                updatePlayer(jucator);
+                Toast.makeText(getApplicationContext(), listPlayers.toString(), Toast.LENGTH_LONG).show();
+                notifyAdapter();
+            }
+        }
+    }
+
+    private void updatePlayer(Jucator jucator) {
+        listPlayers.get(selectedPlayerIndex).setNume(jucator.getNume());
+        listPlayers.get(selectedPlayerIndex).setNumar(jucator.getNumar());
+        listPlayers.get(selectedPlayerIndex).setDataNastere(jucator.getDataNastere());
+        listPlayers.get(selectedPlayerIndex).setPozitie(jucator.getPozitie());
     }
 
     private void notifyAdapter() {
