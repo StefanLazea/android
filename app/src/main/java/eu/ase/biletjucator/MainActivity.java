@@ -1,5 +1,6 @@
 package eu.ase.biletjucator;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.CamcorderProfile;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -49,6 +51,36 @@ public class MainActivity extends AppCompatActivity {
         lvPlayers.setAdapter(adapter);
 
         lvPlayers.setOnItemClickListener(lvPlayersItemSelected());
+        lvPlayers.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                buildAlertDialog(position);
+                return true;
+            }
+        });
+    }
+
+    private void buildAlertDialog(final int position) {
+        AlertDialog alert = new AlertDialog.Builder(this)
+                .setTitle("Stergere jucator")
+                .setMessage(getString(R.string.main_delete_alert,
+                        listPlayers.get(position).getNume()))
+                .setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        listPlayers.remove(position);
+                        notifyAdapter();
+
+                    }
+                }).setNegativeButton("Nu", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Ok", Toast.LENGTH_LONG).show();
+                    }
+                }).create();
+
+        alert.show();
+
     }
 
     private AdapterView.OnItemClickListener lvPlayersItemSelected() {
@@ -79,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         //daca se duce cu intent ul cu UPDATE, se va intoarce si trebuie updatat player ul de la pozitia data
-        if(requestCode == REQUEST_CODE_UPDATE_PLAYER && resultCode == RESULT_OK && data!=null){
+        if (requestCode == REQUEST_CODE_UPDATE_PLAYER && resultCode == RESULT_OK && data != null) {
             Jucator jucator = (Jucator) data.getParcelableExtra(AddPlayerActivity.ADD_PLAYER_KEY);
             if (jucator != null) {
                 updatePlayer(jucator);

@@ -10,6 +10,7 @@
     <string name="add_name_error">Numele nu poate fi gol</string>
     <string name="add_number_error">numarul nu poate fi gol</string>
     <string name="add_birtday_error">Ziua de nastere nu poate fi goala</string>
+    <string name="main_delete_alert">Sigur vrei sa stergi item ul %1$s</string>
     <string-array name="spinner_items">
         <item>Portar</item>
         <item>Fundas</item>
