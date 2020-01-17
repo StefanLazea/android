@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/adaugaJucator"
+        android:title="@string/menu_add_player" />
+    <item
+        android:id="@+id/sincronizareRetea"
+        android:title="@string/menu_sync" />
+    <item
+        android:id="@+id/graphic"
+        android:title="@string/menu_graphic" />
+</menu>

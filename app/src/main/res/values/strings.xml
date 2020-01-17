@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">BiletJucator</string>
+    <string name="menu_add_player">Adauga jucator</string>
+    <string name="menu_sync">Sincornizare retea</string>
+    <string name="menu_graphic">Grafic</string>
+    <string name="add_button_text">Send</string>
+    <string name="add_name_text">Nume</string>
+    <string name="add_number_text">Numar</string>
+    <string name="add_birthday_text">Data nastere</string>
+    <string name="add_name_error">Numele nu poate fi gol</string>
+    <string name="add_number_error">numarul nu poate fi gol</string>
+    <string name="add_birtday_error">Ziua de nastere nu poate fi goala</string>
+    <string-array name="spinner_items">
+        <item>Portar</item>
+        <item>Fundas</item>
+        <item>Mijlocas</item>
+        <item>Atacant</item>
+    </string-array>
+</resources>
