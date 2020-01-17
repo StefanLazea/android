@@ -1,5 +1,6 @@
 package eu.ase.biletjucator;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.CamcorderProfile;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Jucator> listPlayers = new ArrayList<>();
     private ListView lvPlayers;
     private int selectedPlayerIndex;
+    private Button saveToDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initComponents() {
         lvPlayers = findViewById(R.id.add_lv_players);
+        saveToDb = findViewById(R.id.main_save_db);
         //seteaza un array adapter pe lista noastra
         ArrayAdapter<Jucator> adapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_list_item_1,
@@ -58,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        saveToDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addListToDb();
+            }
+        });
+
+    }
+
+    private void addListToDb() {
+        if (listPlayers != null) {
+            for (int i = 0; i < listPlayers.size(); i++) {
+                insertIntoDb(listPlayers.get(i));
+            }
+        }
+        getAllFromDb();
     }
 
     private void buildAlertDialog(final int position) {
@@ -158,4 +179,33 @@ public class MainActivity extends AppCompatActivity {
         outState.putParcelableArrayList("PLAYERS", listPlayers);
     }
 
+    @SuppressLint("StaticFieldLeak")
+    private void insertIntoDb(Jucator jucator) {
+        new JucatorService.Insert(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Jucator result) {
+                if (result != null) {
+//                    listPlayers.add(result);
+//                    notifyAdapter();
+                    Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
+
+                }
+            }
+        }.execute(jucator);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getAllFromDb() {
+        new JucatorService.GetAll(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(List<Jucator> result) {
+                if (result != null) {
+//                    listPlayers.clear();
+//                    listPlayers.addAll(result);
+//                    notifyAdapter();
+                    Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute();
+    }
 }
