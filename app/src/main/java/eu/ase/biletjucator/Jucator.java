@@ -24,13 +24,13 @@ public class Jucator implements Parcelable {
 
     protected Jucator(Parcel in) {
         this.nume = in.readString();
+        this.numar = in.readInt();
         try {
             this.dataNastere = new SimpleDateFormat(AddPlayerActivity.DATE_FORMAT,
                     Locale.US).parse(in.readString());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        numar = in.readInt();
         pozitie = in.readString();
     }
 

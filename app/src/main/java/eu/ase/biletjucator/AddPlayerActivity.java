@@ -1,7 +1,5 @@
 package eu.ase.biletjucator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +18,7 @@ import java.util.Locale;
 
 public class AddPlayerActivity extends AppCompatActivity {
 
-    public static final String DATE_FORMAT="dd-MM-yyyy";
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final String ADD_PLAYER_KEY = "addPLayerKey";
     private EditText nume;
     private EditText numar;
@@ -31,8 +31,38 @@ public class AddPlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_player);
-        intent = getIntent();
         initComponents();
+        intent = getIntent();
+        // verific daca pe intent este deja un jucator; trimis pentru a fi modificat
+        if (intent.hasExtra(ADD_PLAYER_KEY)) {
+            Jucator jucator = intent.getParcelableExtra(ADD_PLAYER_KEY);
+            updateUI(jucator);
+        }
+    }
+
+    private void updateUI(Jucator jucator) {
+        nume.setText(jucator.getNume());
+        numar.setText(String.valueOf(jucator.getNumar()));
+        if (jucator.getDataNastere() != null) {
+
+            birthday.setText(new SimpleDateFormat(DATE_FORMAT, Locale.US)
+                    .format(jucator.getDataNastere()));
+        }
+
+        if (jucator.getPozitie() != null) {
+            addPosition(jucator);
+        }
+
+    }
+
+    private void addPosition(Jucator jucator) {
+        ArrayAdapter<String> adapter = (ArrayAdapter<String>) pozitie.getAdapter();
+        for (int i = 0; i < adapter.getCount(); i++) {
+            if (adapter.getItem(i).equals(jucator.getPozitie())) {
+                pozitie.setSelection(i);
+                break;
+            }
+        }
     }
 
     private void initComponents() {
@@ -69,12 +99,12 @@ public class AddPlayerActivity extends AppCompatActivity {
             return false;
         }
 
-        if(numar.getText() == null || numar.getText().toString().trim().isEmpty()){
+        if (numar.getText() == null || numar.getText().toString().trim().isEmpty()) {
             Toast.makeText(getApplicationContext(), R.string.add_number_error, Toast.LENGTH_LONG).show();
             return false;
         }
 
-        if(birthday.getText() == null || birthday.getText().toString().trim().isEmpty()){
+        if (birthday.getText() == null || birthday.getText().toString().trim().isEmpty()) {
             Toast.makeText(getApplicationContext(), R.string.add_birtday_error, Toast.LENGTH_LONG).show();
             return false;
         }
@@ -82,7 +112,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         return true;
     }
 
-    private Jucator createPlayer(){
+    private Jucator createPlayer() {
 
         String numeJucator = nume.getText().toString();
         String pozitieJucator = pozitie.getSelectedItem().toString();
@@ -96,7 +126,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         }
 
 
-        return new Jucator(numeJucator, numarJucator, date, pozitieJucator );
+        return new Jucator(numeJucator, numarJucator, date, pozitieJucator);
 
     }
 }
