@@ -22,6 +22,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.ase.biletjucator.json.HttpManager;
+import eu.ase.biletjucator.json.HttpResponse;
+import eu.ase.biletjucator.json.JsonParser;
+
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_ADD_PLAYER = 200;
     private static final int REQUEST_CODE_UPDATE_PLAYER = 201;
@@ -30,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private int selectedPlayerIndex;
     private Button saveToDb;
 
+    private HttpResponse httpResponse;
+    private static final String URL = "test";
+
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +50,18 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null && savedInstanceState.containsKey("PLAYERS")) {
             notifyAdapter();
         }
+//
+//        new HttpManager(){
+//            @Override
+//            protected void onPostExecute(String s) {
+//                httpResponse = JsonParser.parseJson(s);
+//                if(httpResponse!=null){
+//                    Toast.makeText(getApplicationContext(), "Ura", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        }.execute(URL);
     }
+
 
     private void initComponents() {
         lvPlayers = findViewById(R.id.add_lv_players);

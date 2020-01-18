@@ -1,4 +1,5 @@
 *.iml
 .idea
 .gradle
-app/build
+bilet6Curs/app/build
+biletJucator/app/build

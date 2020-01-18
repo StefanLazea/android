@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">bilet6Curs</string>
+    <string name="add_prof_label">Profesor titular</string>
+    <string name="add_id_label">ID</string>
+    <string name="add_name_label">Denumire</string>
+    <string name="add_sala_label">Sala</string>
+    <string name="add_nr_part_label">Nr participanti</string>
+    <string name="add_send_label">Trimite</string>
+</resources>
