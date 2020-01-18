@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddCourseActivity extends AppCompatActivity {
 
@@ -35,8 +36,28 @@ public class AddCourseActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(validate()){
 
+                }
             }
         });
+    }
+
+    private boolean validate() {
+        if(etDenumire.getText().toString() == null || etDenumire.getText().toString().trim().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Denumirea nu trebuie sa fie goala", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(etProf.getText().toString() == null || etProf.getText().toString().trim().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Campul profesor nu trebuie sa fie goal", Toast.LENGTH_LONG).show();
+            return false;
+        }if(etDenumire.getText().toString() == null || etSala.getText().toString().trim().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Denumirea nu trebuie sa fie goala", Toast.LENGTH_LONG).show();
+            return false;
+        }if(etDenumire.getText().toString() == null || etDenumire.getText().toString().trim().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Denumirea nu trebuie sa fie goala", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }
