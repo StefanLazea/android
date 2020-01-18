@@ -6,4 +6,9 @@
     <string name="add_sala_label">Sala</string>
     <string name="add_nr_part_label">Nr participanti</string>
     <string name="add_send_label">Trimite</string>
+    <string name="add_id_error">Campul id nu trebuie sa fie goal</string>
+    <string name="add_nr_part_error">Campul nr participanti nu trebuie sa fie goal</string>
+    <string name="add_sala_error">Campul sala nu trebuie sa fie goal</string>
+    <string name="add_prof_error">Campul profesor nu trebuie sa fie goal</string>
+    <string name="add_denumire_error">Denumirea nu trebuie sa fie goala</string>
 </resources>
