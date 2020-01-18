@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_reservation"
+        android:title="@string/menu_add_reservation" />
+    <item
+        android:id="@+id/get_reservation"
+        android:title="@string/menu_get_online_reservation" />
+    <item
+        android:id="@+id/save_db"
+        android:title="@string/menu_save_to_db" />
+    <item
+        android:id="@+id/graphic"
+        android:title="@string/menu_graphic" />
+    <item
+        android:id="@+id/about"
+        android:title="@string/menu_about" />
+
+</menu>

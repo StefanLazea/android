@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">bilet4Rezervare</string>
+    <string name="menu_add_reservation">Adauga rezervare</string>
+    <string name="menu_get_online_reservation">Preluare rezervari online</string>
+    <string name="menu_save_to_db">Salvare baza de date</string>
+    <string name="menu_graphic">Grafic</string>
+    <string name="menu_about">Despre</string>
+    <string name="about_author">Lazea Stefan</string>
+    <string name="add_id_error">Campul id nu trebuie sa fie gol</string>
+    <string name="add_name_error">Numele nu poate fi gol</string>
+    <string name="add_error">Campul nu poate fi gol</string>
+    <string-array name="spinner_camera">
+        <item>Simpla</item>
+        <item>Dubla</item>
+    </string-array>
+</resources>
