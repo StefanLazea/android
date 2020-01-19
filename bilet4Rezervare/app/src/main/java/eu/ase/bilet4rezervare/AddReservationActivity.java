@@ -35,6 +35,34 @@ public class AddReservationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_reservation);
         initComponents();
         intent = getIntent();
+        if (intent.hasExtra(ADD_RES_KEY)) {
+            Rezervare rez = intent.getParcelableExtra(ADD_RES_KEY);
+            updateUI(rez);
+        }
+    }
+
+    private void updateUI(Rezervare rez) {
+        etId.setText(String.valueOf(rez.getIdRezervare()));
+        etNume.setText(rez.getNumeClient());
+        if (rez.getTipCamera() != null) {
+            setTipCamera(rez);
+        }
+        etDurata.setText(String.valueOf(rez.getDurataSejur()));
+        etSuma.setText(String.valueOf(rez.getSumaPlata()));
+        if (rez.getDataCazare() != null) {
+            String dataCazare = new SimpleDateFormat(DATE_FORMAT, Locale.US).format(rez.getDataCazare());
+            etdataCazare.setText(dataCazare);
+        }
+    }
+
+    private void setTipCamera(Rezervare rez) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinnerTipCamera.getAdapter();
+        for (int i = 0; i < adapter.getCount(); i++) {
+            if (adapter.getItem(i).equals(rez.getTipCamera())) {
+                spinnerTipCamera.setSelection(i);
+                break;
+            }
+        }
     }
 
     private void initComponents() {
@@ -56,6 +84,7 @@ public class AddReservationActivity extends AppCompatActivity {
                 if (validate()) {
                     Rezervare rez = createReservation();
                     intent.putExtra(ADD_RES_KEY, rez);
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
             }

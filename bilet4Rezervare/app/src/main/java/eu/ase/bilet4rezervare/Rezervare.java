@@ -3,17 +3,29 @@ package eu.ase.bilet4rezervare;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+@Entity
 public class Rezervare implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id_rezervare")
     private long idRezervare;
+    @ColumnInfo(name = "nume_client")
     private String numeClient;
+    @ColumnInfo(name = "tip_camera")
     private String tipCamera;
+    @ColumnInfo(name = "durata_sejur")
     private int durataSejur;
+    @ColumnInfo(name = "suma_plata")
     private float sumaPlata;
+    @ColumnInfo(name = "data_cazare")
     private Date dataCazare;
 
     public Rezervare(long idRezervare, String numeClient, String tipCamera, int durataSejur, float sumaPlata, Date dataCazare) {
@@ -103,6 +115,18 @@ public class Rezervare implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Rezervare{" +
+                "idRezervare=" + idRezervare +
+                ", numeClient='" + numeClient + '\'' +
+                "\n, tipCamera='" + tipCamera + '\'' +
+                "\n, durataSejur=" + durataSejur +
+                "\n, sumaPlata=" + sumaPlata +
+                "\n, dataCazare=" + dataCazare +
+                '}';
     }
 
     @Override

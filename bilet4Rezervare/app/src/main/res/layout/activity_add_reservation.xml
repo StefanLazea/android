@@ -65,7 +65,7 @@
         android:layout_marginTop="62dp"
         android:layout_marginEnd="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_id_label"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +91,7 @@
         android:layout_marginTop="39dp"
         android:layout_marginEnd="38dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -128,8 +128,7 @@
         android:layout_marginTop="27dp"
         android:layout_marginEnd="27dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text=" "
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/add_durata" />
@@ -143,7 +142,6 @@
         android:layout_marginEnd="25dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=" "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/add_suma" />
@@ -167,7 +165,7 @@
         android:layout_marginStart="153dp"
         android:layout_marginTop="67dp"
         android:layout_marginEnd="170dp"
-        android:text="Button"
+        android:text="Send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_data_cazare" />
