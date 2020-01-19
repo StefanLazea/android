@@ -58,7 +58,6 @@ public class AddCourseActivity extends AppCompatActivity {
                     intent.putExtra(ADD_CURS_KEY, curs);
                     setResult(RESULT_OK, intent);
                     finish();
-
                 }
             }
         });

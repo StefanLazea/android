@@ -24,6 +24,17 @@ public class AddArticleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_article);
         initComponents();
         intent = getIntent();
+        if (intent.hasExtra(ADD_ARTICLE_KEY)) {
+            Articol art = (Articol) intent.getParcelableExtra(ADD_ARTICLE_KEY);
+            updateUI(art);
+        }
+    }
+
+    private void updateUI(Articol art) {
+        etTitlu.setText(art.getTitlu());
+        etNrAutori.setText(String.valueOf(art.getNumarAutori()));
+        etPrimaPag.setText(art.getPrimaPagina());
+        etUltimaPag.setText(art.getUltimaPagina());
     }
 
     private void initComponents() {

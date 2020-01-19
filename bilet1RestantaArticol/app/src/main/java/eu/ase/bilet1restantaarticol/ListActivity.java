@@ -1,9 +1,12 @@
 package eu.ase.bilet1restantaarticol;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -13,9 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE_UPDATE_ARTICLE = 201;
     private ListView lvArticole;
     private Intent intent;
     private ArrayList<Articol> articole = new ArrayList<>();
+    public int positionSelectedIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,37 @@ public class ListActivity extends AppCompatActivity {
         );
         lvArticole.setAdapter(adapter);
 
+        lvArticole.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                positionSelectedIndex = position;
+                Articol articol = articole.get(position);
+                if (articol != null) {
+                    Intent intent = new Intent(ListActivity.this, AddArticleActivity.class);
+                    intent.putExtra(AddArticleActivity.ADD_ARTICLE_KEY, articol);
+                    startActivityForResult(intent, REQUEST_CODE_UPDATE_ARTICLE);
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_UPDATE_ARTICLE && resultCode == RESULT_OK && data != null) {
+            Articol art = (Articol) data.getParcelableExtra(AddArticleActivity.ADD_ARTICLE_KEY);
+            setItemFromList(art);
+            notifyAdapter();
+        }
+    }
+
+    private void setItemFromList(Articol art) {
+        articole.get(positionSelectedIndex).setTitlu(art.getTitlu());
+        articole.get(positionSelectedIndex).setNumarAutori(art.getNumarAutori());
+        articole.get(positionSelectedIndex).setPrimaPagina(art.getPrimaPagina());
+        articole.get(positionSelectedIndex).setUltimaPagina(art.getPrimaPagina());
     }
 
     private void notifyAdapter() {
