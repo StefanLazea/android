@@ -3,17 +3,51 @@ package eu.ase.bilet1restantaarticol;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Articol implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private long id;
+
+    @ColumnInfo(name = "titlu")
     private String titlu;
+
+    @ColumnInfo(name = "prima_pagina")
     private String primaPagina;
+
+    @ColumnInfo(name = "ultima_pagina")
     private String ultimaPagina;
+
+    @ColumnInfo(name = "numar_autori")
     private int numarAutori;
 
+    public Articol(long id, String titlu, String primaPagina, String ultimaPagina, int numarAutori) {
+        this.id = id;
+        this.titlu = titlu;
+        this.primaPagina = primaPagina;
+        this.ultimaPagina = ultimaPagina;
+        this.numarAutori = numarAutori;
+    }
+
+    @Ignore
     public Articol(String titlu, String primaPagina, String ultimaPagina, int numarAutori) {
         this.titlu = titlu;
         this.primaPagina = primaPagina;
         this.ultimaPagina = ultimaPagina;
         this.numarAutori = numarAutori;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     protected Articol(Parcel in) {

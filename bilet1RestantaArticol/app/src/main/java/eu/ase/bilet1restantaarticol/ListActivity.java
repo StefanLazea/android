@@ -3,8 +3,10 @@ package eu.ase.bilet1restantaarticol;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,6 +40,7 @@ public class ListActivity extends AppCompatActivity {
     private void addArticleToList(ArrayList<Articol> lista) {
         for (int i = 0; i < lista.size(); i++) {
             articole.add(lista.get(i));
+            insertIntoDb(lista.get(i));
         }
         notifyAdapter();
     }
@@ -88,5 +91,19 @@ public class ListActivity extends AppCompatActivity {
     private void notifyAdapter() {
         ArrayAdapter<Articol> adapter = (ArrayAdapter) lvArticole.getAdapter();
         adapter.notifyDataSetChanged();
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
+    private void insertIntoDb(Articol articol) {
+        new ArticolService.Insert(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Articol articol) {
+                if (articol != null) {
+                    Log.i("INSERT DB >>>>>>>>", "Articolul a fost introdus in baza de date "
+                            + articol.toString());
+                }
+            }
+        }.execute(articol);
     }
 }
