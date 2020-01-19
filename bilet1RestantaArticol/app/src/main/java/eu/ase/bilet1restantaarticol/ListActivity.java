@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,12 +18,19 @@ import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.ase.bilet1restantaarticol.json.HttpManager;
+import eu.ase.bilet1restantaarticol.json.HttpResponse;
+import eu.ase.bilet1restantaarticol.json.JsonParser;
+
 public class ListActivity extends AppCompatActivity {
+    private static final String URL = "https://api.myjson.com/bins/1b7jwy";
     private static final int REQUEST_CODE_UPDATE_ARTICLE = 201;
     private ListView lvArticole;
     private Intent intent;
     private ArrayList<Articol> articole = new ArrayList<>();
     public int positionSelectedIndex;
+    private HttpResponse httpResponse;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,7 @@ public class ListActivity extends AppCompatActivity {
 
     private void initComponents() {
         lvArticole = findViewById(R.id.lvArticole);
+        btn = findViewById(R.id.btnJSON);
 
         ArrayAdapter<Articol> adapter = new ArrayAdapter<>(
                 getApplicationContext(),
@@ -65,6 +74,13 @@ public class ListActivity extends AppCompatActivity {
                     intent.putExtra(AddArticleActivity.ADD_ARTICLE_KEY, articol);
                     startActivityForResult(intent, REQUEST_CODE_UPDATE_ARTICLE);
                 }
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getArticlesFromJson();
             }
         });
 
@@ -105,5 +121,18 @@ public class ListActivity extends AppCompatActivity {
                 }
             }
         }.execute(articol);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getArticlesFromJson() {
+        new HttpManager() {
+            @Override
+            protected void onPostExecute(String s) {
+                httpResponse = JsonParser.parseJson(s);
+                if (httpResponse != null) {
+                    Toast.makeText(getApplicationContext(), httpResponse.getArticole().toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute(URL);
     }
 }

@@ -7,13 +7,13 @@
     tools:context=".ListActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnJSON"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="67dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="256dp"
-        android:text="Button"
+        android:text="Json"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,5 +27,5 @@
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnJSON" />
 </androidx.constraintlayout.widget.ConstraintLayout>
