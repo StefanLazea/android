@@ -22,14 +22,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.ase.bilet5examen.json.HttpManager;
+import eu.ase.bilet5examen.json.HttpResponse;
+import eu.ase.bilet5examen.json.JsonParser;
+
 public class MainActivity extends AppCompatActivity {
 
+    public static final String URL = "https://api.myjson.com/bins/aueaa";
     public static final int REQUEST_CODE_ADD_EXAM = 200;
     public static final int REQUEST_CODE_UPDATE_EXAM = 201;
     private List<Examen> examene = new ArrayList<>();
     private ListView lvExamene;
     private Button btnSend;
     private int selectePositionIndex;
+    private HttpResponse httpResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,8 +131,25 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), AddExamActivity.class);
             startActivityForResult(intent, REQUEST_CODE_ADD_EXAM);
         }
+        if (item.getItemId() == R.id.sync) {
+            addExamListFromJson();
+        }
         return true;
 
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void addExamListFromJson() {
+        new HttpManager() {
+            @Override
+            protected void onPostExecute(String s) {
+                httpResponse = JsonParser.parseJson(s);
+                if (httpResponse != null) {
+                    examene.addAll(httpResponse.getExamen());
+                    notifyAdapter();
+                }
+            }
+        }.execute(URL);
     }
 
     @Override
