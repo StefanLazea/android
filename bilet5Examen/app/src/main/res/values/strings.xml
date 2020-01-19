@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">bilet5Examen</string>
+    <string name="add_exam_menu">Adauga examen</string>
+    <string name="sync_menu">Sincronizare retea</string>
+    <string name="menu_graphic">Grafic</string>
+    <string name="field_error">Campul nu trebuie sa fie gol</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_exam"
+        android:title="@string/add_exam_menu" />
+    <item
+        android:id="@+id/sync"
+        android:title="@string/sync_menu" />
+    <item
+        android:id="@+id/graphic"
+        android:title="@string/menu_graphic" />
+</menu>
