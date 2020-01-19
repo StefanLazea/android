@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">bilet1RestantaArticol</string>
+    <string name="add_article_menu">Adauga articol</string>
+    <string name="list_articles_menu">Lista articole</string>
+    <string name="get_json_xml_menu">Preluare articole din xml sau json</string>
+    <string name="menu_raport">Raport</string>
+    <string name="about_menu">Despre</string>
+    <string name="author">Lazea Stefan</string>
+    <string name="add_titlu_label">Titlu</string>
+    <string name="add_prima_pag_label">Prima pagina</string>
+    <string name="add_ultima_pagina_labe">Ultima pagina</string>
+    <string name="add_numar_autori_label">Numar autori</string>
+    <string name="add_send">Trimite</string>
+    <string name="field_empty_error">Campul nu poate fi gol</string>
+</resources>
