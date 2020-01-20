@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,13 +16,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import eu.ase.bilet2restautoturism.json.HttpManager;
+import eu.ase.bilet2restautoturism.json.HttpResponse;
+import eu.ase.bilet2restautoturism.json.JsonParser;
+
 public class ListActivity extends AppCompatActivity {
 
+    private static final String URL = "https://api.myjson.com/bins/tidn6";
     private Intent intent;
     private ArrayList<Autovehicul> autovehicule = new ArrayList<>();
     private static final int REQUEST_CODE_UPDATE_AUTO = 201;
     private ListView lvAuto;
     private int selectedAutoIndex;
+    private Button btnJson;
+    private HttpResponse httpResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,7 @@ public class ListActivity extends AppCompatActivity {
 
     private void initComponents() {
         lvAuto = findViewById(R.id.lvAuto);
+        btnJson = findViewById(R.id.btnJson);
 
         ArrayAdapter<Autovehicul> adapter = new ArrayAdapter<>(
                 getApplication(),
@@ -72,6 +81,22 @@ public class ListActivity extends AppCompatActivity {
                     intent.putExtra(AddAutoActivity.ADD_AUTO_KEY, auto);
                     startActivityForResult(intent, REQUEST_CODE_UPDATE_AUTO);
                 }
+            }
+        });
+        btnJson.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("StaticFieldLeak")
+            @Override
+            public void onClick(View v) {
+                new HttpManager(){
+                    @Override
+                    protected void onPostExecute(String s) {
+                        httpResponse = JsonParser.jsonParse(s);
+                        if(httpResponse!=null){
+                            autovehicule.addAll(httpResponse.getAutovehicule());
+                            notifyAdapter();
+                        }
+                    }
+                }.execute(URL);
             }
         });
 
