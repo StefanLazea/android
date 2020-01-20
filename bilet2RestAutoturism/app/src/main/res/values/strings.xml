@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">bilet2RestAutoturism</string>
+    <string name="add_auto_menu">Adauga autovehicul</string>
+    <string name="preluare_json_menu">Preluare json</string>
+    <string name="lista_autovehicule_menu">Lista autovehicule</string>
+    <string name="raport_menu">Raport</string>
+    <string name="about_menu">Despre</string>
+    <string name="author">Stefan LAZEA</string>
+    <string name="numar_auto_label">Numar auto</string>
+    <string name="data_inregistrare_label">Data inregistrare</string>
+    <string name="loc_de_parcare_label">Loc de parcare</string>
+    <string name="Send">Button</string>
+    <string name="field_error">Campul nu poate fi gol</string>
+</resources>

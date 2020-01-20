@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_auto"
+        android:title="@string/add_auto_menu" />
+    <item
+        android:id="@+id/list_auto"
+        android:title="@string/lista_autovehicule_menu" />
+    <item
+        android:id="@+id/prel_json"
+        android:title="@string/preluare_json_menu" />
+    <item
+        android:id="@+id/raport"
+        android:title="@string/raport_menu" />
+    <item
+        android:id="@+id/about"
+        android:title="@string/about_menu" />
+</menu>
