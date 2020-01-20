@@ -61,6 +61,13 @@ public class ListPackages extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        PackageAdapter packageAdapter = new PackageAdapter(
+                getApplicationContext(),
+                R.layout.lv_custom_package,
+                listaPachete,
+                getLayoutInflater()
+        );
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,4 +106,5 @@ public class ListPackages extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putParcelableArrayList(PACKAGES_STATE, listaPachete);
     }
+
 }
