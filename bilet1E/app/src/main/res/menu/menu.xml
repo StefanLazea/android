@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_package"
+        android:title="@string/send_package_menu" />
+    <item
+        android:id="@+id/list_package"
+        android:title="@string/list_package_menu" />
+    <item
+        android:id="@+id/back_up_packages"
+        android:title="@string/back_up_packs_menu" />
+    <item
+        android:id="@+id/update_packages"
+        android:title="@string/update_packages_menu" />
+    <item
+        android:id="@+id/package_rate"
+        android:title="@string/package_sending_rate_menu" />
+</menu>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">bilet1E</string>
+    <string name="send_package_menu">Send package</string>
+    <string name="list_package_menu">List package</string>
+    <string name="update_packages_menu">Update packages</string>
+    <string name="package_sending_rate_menu">Package sending rate</string>
+    <string name="package_id_labe">Package id</string>
+    <string name="latitude_label">Latitude</string>
+    <string name="longitude_label">Longitude</string>
+    <string name="date_label">Date</string>
+    <string name="package_type_label">Package type</string>
+    <string name="error_field">Campul nu este completat corect</string>
+    <string name="back_up_packs_menu">Back-up packages</string>
+
+    <string-array name="spinnerPackageType">
+        <item>position</item>
+        <item>state</item>
+    </string-array>
+</resources>
