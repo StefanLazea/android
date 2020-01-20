@@ -18,8 +18,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import eu.ase.bilet62018.json.HttpManager;
+import eu.ase.bilet62018.json.HttpResponse;
+import eu.ase.bilet62018.json.JsonParser;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final String URL = "https://api.myjson.com/bins/cdztu";
     private static final String SHARED_PREF_NAME = "sharedpref";
     public static final String SEND_OFFERS_LIST = "sendOffersList";
     public static final String DATE_FORMAT = "dd-MM-yyyy HH:mm";
@@ -28,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDespre;
     private Button btnAddOffer;
     private Button btnListOffers;
+    private Button btnGetData;
+    private HttpResponse httpResponse;
     private ArrayList<HomeExchange> homes = new ArrayList<>();
 
     @Override
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btnDespre = findViewById(R.id.btnAbout);
         btnAddOffer = findViewById(R.id.btnAddOffer);
         btnListOffers = findViewById(R.id.btnListaOferte);
+        btnGetData = findViewById(R.id.btnPreluareDate);
 
         btnDespre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
                     intent.putParcelableArrayListExtra(SEND_OFFERS_LIST, homes);
                     startActivity(intent);
                 }
+            }
+        });
+
+        btnGetData.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("StaticFieldLeak")
+            @Override
+            public void onClick(View v) {
+                new HttpManager(){
+                    @Override
+                    protected void onPostExecute(String s) {
+                        httpResponse = JsonParser.parseJson(s);
+                        if(httpResponse!=null){
+                            Toast.makeText(getApplicationContext(), httpResponse.getHomes().toString(), Toast.LENGTH_LONG).show();
+                            homes.addAll(httpResponse.getHomes());
+                        }
+                    }
+                }.execute(URL);
             }
         });
     }
