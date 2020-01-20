@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/lv_offers_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1.2"
+        android:orientation="horizontal"
+        >
+    <TextView
+        android:id="@+id/lv_adresa"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/lv_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:text="" />
+    <TextView
+        android:id="@+id/lv_tipLocuinta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:text="" />
+    </LinearLayout>
+</RelativeLayout>

@@ -2,4 +2,10 @@
     <string name="app_name">bilet62018</string>
     <string name="date_time_current">DATE and TIME</string>
     <string name="author_name">Lazea Stefan</string>
+    <string name="add_send">Send</string>
+
+    <string-array name="spnLocuinta">
+        <item>casa</item>
+        <item>apartament</item>
+    </string-array>
 </resources>
