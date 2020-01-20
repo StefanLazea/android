@@ -3,18 +3,44 @@ package eu.ase.bilet62018;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+@Entity(tableName = "homes")
+@TypeConverters({DateConverter.class})
 public class HomeExchange implements Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private long id;
+    @ColumnInfo(name = "adresa")
     private String adresa;
+    @ColumnInfo(name = "numar_camere")
     private int numarCamere;
+    @ColumnInfo(name = "suprafata")
     private float suprafata;
+    @ColumnInfo(name = "data")
     private Date data;
+    @ColumnInfo(name = "tip_locuinta")
     private String tipLocuinta;
 
+    public HomeExchange(long id, String adresa, int numarCamere, float suprafata, Date data, String tipLocuinta) {
+        this.id = id;
+        this.adresa = adresa;
+        this.numarCamere = numarCamere;
+        this.suprafata = suprafata;
+        this.data = data;
+        this.tipLocuinta = tipLocuinta;
+    }
+
+    @Ignore
     public HomeExchange(String adresa, int numarCamere, float suprafata, Date data, String tipLocuinta) {
         this.adresa = adresa;
         this.numarCamere = numarCamere;
@@ -57,6 +83,14 @@ public class HomeExchange implements Parcelable {
                 ", data=" + data +
                 ", tipLocuinta='" + tipLocuinta + '\'' +
                 '}';
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getAdresa() {

@@ -3,9 +3,11 @@ package eu.ase.bilet62018;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -99,8 +101,21 @@ public class MainActivity extends AppCompatActivity {
             HomeExchange home = (HomeExchange) data.getParcelableExtra(AddHomeActivity.ADD_HOME_KEY);
             if (home != null) {
                 homes.add(home);
+                insertIntoDb(home);
                 Toast.makeText(getApplicationContext(), home.toString(), Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void insertIntoDb(HomeExchange home) {
+        new HomeExchangeService.Insert(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(HomeExchange result) {
+                if (result != null) {
+                    Log.i("DB Insert>>>>>>>>", result.toString() + "was inserted");
+                }
+            }
+        }.execute(home);
     }
 }

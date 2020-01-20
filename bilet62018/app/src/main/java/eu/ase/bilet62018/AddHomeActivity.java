@@ -34,6 +34,33 @@ public class AddHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_home);
         intent = getIntent();
         initComponents();
+
+        if(intent.hasExtra(ADD_HOME_KEY)){
+            HomeExchange home = (HomeExchange) intent.getParcelableExtra(ADD_HOME_KEY);
+            if(home!=null){
+                updateUI(home);
+            }
+        }
+    }
+
+    private void updateUI(HomeExchange home) {
+        etAdresa.setText(home.getAdresa());
+        etNrCamere.setText(String.valueOf(home.getNumarCamere()));
+        etData.setText(new SimpleDateFormat(DATE_FORMAT, Locale.US).format(home.getData()));
+        etSuprafata.setText(String.valueOf(home.getSuprafata()));
+        if(home.getTipLocuinta()!=null){
+            addTipLocuinta(home);
+        }
+    }
+
+    private void addTipLocuinta(HomeExchange home) {
+        ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinner.getAdapter();
+        for(int i=0;i<adapter.getCount();i++){
+            if(adapter.getItem(i).equals(home.getTipLocuinta())){
+                spinner.setSelection(i);
+                break;
+            }
+        }
     }
 
     private void initComponents() {
